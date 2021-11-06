@@ -1,0 +1,227 @@
+li a:hover {
+    border-radius: 5px;
+    
+
+    background: rgb(36, 105, 147); /* fallback for IE8 support */
+    background: rgba(0,0,0,0.05); /* add this for highlighting */
+}
+
+/* stylelint-disable selector-list-comma-newline-after */
+
+.blog-header {
+  line-height: 1;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.blog-header-logo {
+  font-family: Amiri, Georgia, "Times New Roman", serif;
+  font-size: 2.25rem;
+}
+
+.blog-header-logo:hover {
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Amiri, Georgia, "Times New Roman", serif;
+}
+
+.display-4 {
+  font-size: 2.5rem;
+}
+@media (min-width: 768px) {
+  .display-4 {
+    font-size: 3rem;
+  }
+}
+
+.nav-scroller {
+  position: relative;
+  z-index: 2;
+  height: 2.75rem;
+  overflow-y: hidden;
+}
+
+.nav-scroller .nav {
+  display: flex;
+  flex-wrap: nowrap;
+  padding-bottom: 1rem;
+  margin-top: -1px;
+  overflow-x: auto;
+  text-align: center;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+.nav-scroller .nav-link {
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  font-size: .875rem;
+}
+
+.card-img-right {
+  height: 100%;
+  border-radius: 3px 0 0 3px;
+}
+
+.flex-auto {
+  flex: 0 0 auto;
+}
+
+.h-250 { height: 250px; }
+@media (min-width: 768px) {
+  .h-md-250 { height: 250px; }
+}
+
+/* Pagination */
+.blog-pagination {
+  margin-bottom: 4rem;
+}
+.blog-pagination > .btn {
+  border-radius: 2rem;
+}
+
+/*
+ * Blog posts
+ */
+.blog-post {
+  margin-bottom: 4rem;
+}
+.blog-post-title {
+  margin-bottom: .25rem;
+  font-size: 2.5rem;
+}
+.blog-post-meta {
+  margin-bottom: 1.25rem;
+  color: #727272;
+}
+
+/*
+ * Footer
+ */
+.blog-footer {
+  padding: 2.5rem 0;
+  color: #727272;
+  text-align: center;
+  background-color: #f9f9f9;
+  border-top: .05rem solid #e5e5e5;
+}
+.blog-footer p:last-child {
+  margin-bottom: 0;
+}
+
+
+
+
+
+
+
+
+.p-4 {
+    padding: 1.5rem!important;
+}
+
+.flex-column {
+    flex-direction: column!important;
+}
+
+.position-static {
+    position: static!important;
+}
+
+.d-flex {
+    display: flex!important;
+}
+
+.col {
+    flex: 1 0 0%;
+}
+
+.row {
+    
+    width: 85%;
+    max-width: 100%;
+  
+    margin-top: var(--bs-gutter-y);
+}
+
+.margin5 {
+margin-left: 7% !important;
+}
+
+/* Split the screen in half */
+.split {
+  height: 500%;
+  width: 25%;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Control the left side */
+.left {
+  left: 0;
+  background-color: #111;
+}
+
+/* Control the right side */
+.right {
+  right: 0;
+  background-color: red;
+}
+
+/* If you want the content centered horizontally and vertically */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* Style the image inside the centered container, if needed */
+.centered img {
+  width: 150px;
+  border-radius: 50%;
+}
+
+.multiline {
+  white-space: pre-wrap;
+}
+
+.comment-box {
+  box-shadow: 0 0 3px rgb(10 10 10 / 40%);
+    
+    
+    border-radius: 1px;
+
+    text-decoration: none !important;
+    padding: 6px 6px 6px 12px;
+    margin: 4px 8px 10px 10px;
+    word-wrap: break-word;
+    
+}
+
+.my-textarea {
+    border: none;
+    outline: none;
+    overflow: hidden;
+    resize: none;
+}
+
+.my-p {
+
+  white-space: pre-line;
+  
+  max-width: 100px;
+
+}
+
+.demo-2 {
+  overflow: hidden;
+  white-space: pre-line;
+  text-overflow: ellipsis;
+  max-width: 1700px;
+  max-height: 25px;
+}

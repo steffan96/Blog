@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block title %}Edit Post{% endblock %}
+
+
+{% block content %}
+
+    
+<div class="content-section">
+    <form method="POST" action="" class="row g-3" style="margin: 10px;">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group m-4">
+            <legend class="border-bottom mb-4" style="color: #0000EE;">Edit Your Post</legend>
+            <div class="col-md-1 w-50 p-3" style="margin-bottom: 3px;">
+                {{ form.title.label(class_="form-control-label") }}
+                <br>
+                {{ form.title(class_="form-control-lg", style="width: 400px;") }}
+                <br>
+                {{ form.content.label(class_="form-control-label") }}
+                <br>
+                {{ form.content(class_="form-control-lg", style="width: 700px; height: 160px") }}
+                <br>
+            {{ form.submit (class="btn btn-outline-primary")}}
+       
+            </div>
+        </fieldset>
+        
+    </form>
+</div>
+
+
+{% endblock %}

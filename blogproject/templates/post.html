@@ -1,0 +1,108 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+
+{% block content %}
+<br>
+<br>
+<div class="row featurette m-4">
+  <div class="col-md-7">
+    <div class="m-3" style="display: flex; flex-direction: row;">
+      <img class="rounded-circle account-img"
+        src="{{ url_for('static', filename='small_profile_pics/' + post.author.picture)}}" alt="">
+      <h5 class="m-1"><a href="{{ url_for('users.user', id=post.author.id) }}"
+          style="margin-bottom: 1px; text-decoration: none;">{{ post.author.username }}</a></h5>
+    </div>
+    <h2 class="featurette-heading " style="margin-bottom: 13px;">{{ post.title }}</h2>
+
+    <p style="font-size: large;">{{ post.content }}</p>
+  </div>
+</div>
+<br>
+
+
+
+<hr>
+
+<div style="display: flex;">
+  <h3 class="m-3">Comments</h3>
+  <br>
+</div>
+
+{% for comment in pagin.items %}
+<div class="m-3" style="display: flex; flex-direction: row; margin-bottom: 1px;">
+  <img class="rounded-circle account-img"
+    src="{{ url_for('static', filename='small_profile_pics/' + comment.author.picture)}}" alt="">
+  <h5 class="m-1"><a href="{{ url_for('users.user', id=comment.author.id) }}"
+      style="margin-bottom: 1px; text-decoration: none; margin-right: 15px;">{{ comment.author.username }}</a></h5>
+  <p class="card-text mb-auto" style="justify-content:flex-end; margin-bottom: 1px; align-self: center; font-size: smaller;">{{
+    comment.timestamp.strftime("%Y-%m-%d") }}</p>
+</div>
+<div class="comment-box">
+<p style="font-size: large; margin-left: 15px;">{{ comment.body }}</p>
+{% if comment.author_id == current_user.id or current_user.has_role(2) %}
+            <ul class="nav justify-content-end list-unstyled">
+            
+            <li class="nav-item fs-3">
+                <a href="{{ url_for('main.delete_comment', id=comment.id, post_id=post.id ) }}" style="font-size: 20px; text-decoration: none;"
+                    class="d-flex justify-content-end">Delete</a>
+            </ul>
+            </div>
+            {% else %}
+
+{% endif %}
+    
+
+{% endfor %}
+<br><br>
+
+<div style="display: flex; justify-content: flex-start;">
+  <span style="justify-content: flex-end;">
+    {% if pagin.has_prev %}
+    <a class="btn btn-outline-info m-3" href="{{ url_for('main.post', id=post.id, page=pagin.page - 1) }}">
+      <</a>
+        {% endif %}
+  </span>
+  {% for page_num in pagin.iter_pages(left_edge=1, right_edge=1, right_current=2, left_current=1) %}
+  {% if page_num %}
+  {% if pagin.page == page_num %}
+  <a class="btn btn-info m-3" href="{{ url_for('main.post', id=post.id, page=page_num) }}">{{ page_num }}</a>
+  {% else %}
+  <a class="btn btn-outline-info m-3" href="{{ url_for('main.post', id=post.id, page=page_num) }}">{{ page_num }}</a>
+  {% endif %}
+  {% else %}
+  <span style="align-self: center;">...</span>
+  {% endif %}
+  {% endfor %}
+  <span>
+    {% if pagin.has_next %}
+    <a class="btn btn-outline-info m-3" href="{{ url_for('main.post', id=post.id, page=pagin.page + 1) }}">></a>
+    {% endif %}
+  </span>
+</div>
+
+<div class="m-3">
+  <form method="POST">
+    {{ form.hidden_tag() }}
+    <span>{{ form.body.label }}</span>
+    {% if form.body.errors %}
+    {{ form.body(class="form-control-lg is-invalid" ) }}
+    <div class="invalid-feedback">
+      {% for error in form.body.errors %}
+      <span>{{ error }}</span>
+      {% endfor %}
+    </div>
+    {% else %}
+    {{ form.body(class_="form-control m-2" ) }}
+    {% endif %}
+    <br>
+    {{ form.submit (class="btn btn-outline-primary")}}
+  </form>
+</div>
+
+
+{% endblock %}
+
+  {% block script %}
+  {% endblock %}

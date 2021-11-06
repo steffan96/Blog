@@ -1,0 +1,75 @@
+{% extends 'layout.html' %}
+
+{% block title %}Flask Blog{% endblock %}
+
+
+
+{% block content %}
+    <br>
+    <br>
+    {% for post in posts.items %}
+    <div class="row g-0 border rounded overflow-hidden flex-sm-row m-3 shadow-sm h-sm-150 position-relative margin5" style="height: 220px;">
+        <div class="col p-4 d-flex flex-column position-static">
+            <h2><a href="{{ url_for('main.post', id=post.id) }}" class="blog-post-title" style="text-decoration: none; color: black;">{{ post.title }}</a></h2>
+            {% if post.user_id == current_user.id %}
+                <span class="blog-post-meta">Created by: <a style="text-decoration: none; margin-right: 4px;" href="{{ url_for('users.account') }}">{{ post.author.username }}</a><br>{{
+                    post.date_posted.strftime("%Y-%m-%d %H:%M") }}</span>
+            {% else %}
+                <span class="blog-post-meta">Created by: <a style="text-decoration: none;" href="{{ url_for('users.user', id=post.author.id) }}">{{ post.author.username }}</a><br>{{
+                post.date_posted.strftime("%Y-%m-%d %H:%M") }}</span>
+            {% endif %}
+            <p class="list-inline-item demo-2">{{ post.content }}</p>
+            {% if post.user_id == current_user.id or current_user.has_role(2) %}
+            <ul class="nav justify-content-end list-unstyled">
+            <li class="nav-item fs-3">
+                <a href="{{ url_for('main.edit_post', id=post.id ) }}"
+                    style="margin-right: 20px; font-size: 20px; text-decoration: none;"
+                    class="d-flex justify-content-end">Edit Post</a>
+            <li class="nav-item fs-3">
+                <a href="{{ url_for('main.delete_post', id=post.id ) }}" style="font-size: 20px; text-decoration: none;"
+                    class="d-flex justify-content-end">Delete Post</a>
+            </ul>
+            {% else %}
+            {% if not current_user.likes.filter_by(post_id=post.id).first() %}
+            <ul class="nav justify-content-end list-unstyled">
+            <li class="nav-item fs-3">
+            </ul>
+            
+            <a href="{{ url_for('main.like', id=post.id ) }}" style=" font-size: 20px; text-decoration: none;" 
+            class="d-flex justify-content-end list-inline-item" id="likeId">Like ({{Like.query.filter_by(post_id=post.id).count()}})</a>
+            {% else %}
+            <ul class="nav justify-content-end list-unstyled">
+            <li class="nav-item fs-3">
+            <a href="{{ url_for('main.unlike', id=post.id ) }}" style=" font-size: 20px; text-decoration: none;" 
+            class="d-flex justify-content-end list-inline-item" id="unlikeId">Unlike ({{Like.query.filter_by(post_id=post.id).count()}})</a>
+            </ul>
+            {% endif %}
+            {% endif %}
+
+        </div>
+    </div>
+    {% endfor %}
+
+    <span>
+        {% if posts.has_prev %}
+        <a class="btn btn-outline-info m-3" href="{{ url_for('main.home', page=posts.page - 1) }}"><</a>
+        {% endif %}
+    </span>
+    {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, right_current=2, left_current=1) %}
+        {% if page_num %}
+            {% if posts.page == page_num %}
+                <a class="btn btn-info m-3" href="{{ url_for('main.home', page=page_num) }}">{{ page_num }}</a>
+            {% else %}
+                <a class="btn btn-outline-info m-3" href="{{ url_for('main.home', page=page_num) }}">{{ page_num }}</a>
+            {% endif %}
+        {% else %}
+        ...
+        {% endif %}
+    {% endfor %}
+    <span>
+        {% if posts.has_next %}
+        <a class="btn btn-outline-info m-3" href="{{ url_for('main.home', page=posts.page + 1) }}">></a>
+        {% endif %}
+    </span>
+{% endblock %}
+
