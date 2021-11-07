@@ -12,8 +12,7 @@ class Config:
     SECRET_KEY = os.getenv('SECRET_KEY')
     SESSION_TYPE = 'filesystem' 
     SESSION_PERMANENT = False
-    #SQLALCHEMY_DATABASE_URI = os.getenv('POSTGRES_BLOG')
-    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     MAIL_SERVER = 'smtp.gmail.com'
     MAIL_PORT = 465
@@ -76,9 +75,7 @@ class HerokuConfig(ProductionConfig):
         file_handler = StreamHandler()
         file_handler.setLevel(logging.INFO)
         app.logger.addHandler(file_handler)
-        SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")  # or other relevant config var
-        if SQLALCHEMY_DATABASE_URI.startswith("postgres://"):
-            SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI.replace("postgres://", "postgresql://", 1)
+        
 # rest of connection code using the connection string `uri`
     SSL_REDIRECT = True if os.environ.get('DYNO') else False
     
