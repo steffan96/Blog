@@ -1,1 +1,1 @@
-web: gunicorn blogproject.run:app
+web: gunicorn run:app
