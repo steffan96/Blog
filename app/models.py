@@ -42,7 +42,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(25), nullable=False)
     email = db.Column(db.String(35), nullable=False)
-    password = db.Column(db.String(30), nullable=False)
+    password = db.Column(db.String(130), nullable=False)
     about_me = db.Column(db.Text(), nullable=True)
     picture = db.Column(db.String(25), nullable=False, default='default.jpg')
     member_since = db.Column(db.DateTime, default = datetime.utcnow)
