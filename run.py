@@ -39,7 +39,7 @@ from app.models import Role, User
 @app.cli.command()
 def deploy():
     """"Run deployment tasks."""
-    
+    upgrade()
     #create or update user roles
     Role.insert_roles()
     
