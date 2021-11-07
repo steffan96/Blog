@@ -76,6 +76,10 @@ class HerokuConfig(ProductionConfig):
         file_handler = StreamHandler()
         file_handler.setLevel(logging.INFO)
         app.logger.addHandler(file_handler)
+        SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")  # or other relevant config var
+        if SQLALCHEMY_DATABASE_URI.startswith("postgres://"):
+            SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI.replace("postgres://", "postgresql://", 1)
+# rest of connection code using the connection string `uri`
     SSL_REDIRECT = True if os.environ.get('DYNO') else False
     
     @classmethod
