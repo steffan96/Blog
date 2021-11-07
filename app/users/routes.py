@@ -2,11 +2,11 @@ from flask.helpers import url_for
 from flask_login.utils import login_user
 from flask import Blueprint, render_template, request, redirect, url_for, flash, current_app
 from flask_login import current_user, logout_user, login_required, login_user
-from blogproject.users.forms import LoginForm, RegisterForm, UpdateAccount, RequestResetForm, ResetPasswordForm
-from blogproject.models import User, Post, Follow
-from blogproject import db, bcrypt
-from blogproject.users.utils import save_picture, send_confirmation_mail, reset_password_mail
-from blogproject.decorators import profile
+from app.users.forms import LoginForm, RegisterForm, UpdateAccount, RequestResetForm, ResetPasswordForm
+from app.models import User, Post, Follow
+from app import db, bcrypt
+from app.users.utils import save_picture, send_confirmation_mail, reset_password_mail
+from app.decorators import profile
 
 users = Blueprint('users', __name__)
 

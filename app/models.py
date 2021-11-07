@@ -4,7 +4,7 @@ from flask import current_app
 from flask.helpers import url_for
 from flask_login import UserMixin, AnonymousUserMixin, current_user
 from sqlalchemy.orm import backref
-from blogproject import db, login_manager
+from app import db, login_manager
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flask_admin.contrib.sqla import ModelView
 

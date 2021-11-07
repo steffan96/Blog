@@ -1,5 +1,5 @@
 
-from blogproject import create_app, db
+from app import create_app, db
 import os
 import sys
 import click
@@ -34,7 +34,7 @@ def test(coverage):
         COV.erase()
 
 from flask_migrate import upgrade
-from blogproject.models import Role, User
+from app.models import Role, User
 
 @app.cli.command()
 def deploy():

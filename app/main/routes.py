@@ -1,9 +1,9 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for, current_app, abort, jsonify
 from flask_login import current_user
 from flask_login.utils import login_required
-from blogproject.models import Post, User, Follow, Comment, Like
-from blogproject.main.forms import CommentForm, PostForm
-from blogproject import db
+from app.models import Post, User, Follow, Comment, Like
+from app.main.forms import CommentForm, PostForm
+from app import db
 from flask_sqlalchemy import get_debug_queries
 main = Blueprint('main', __name__)
 
