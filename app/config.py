@@ -12,7 +12,7 @@ class Config:
     SECRET_KEY = os.getenv('SECRET_KEY')
     SESSION_TYPE = 'filesystem' 
     SESSION_PERMANENT = False
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     MAIL_SERVER = 'smtp.gmail.com'
     MAIL_PORT = 465
@@ -78,7 +78,7 @@ class HerokuConfig(ProductionConfig):
         
 # rest of connection code using the connection string `uri`
     SSL_REDIRECT = True if os.environ.get('DYNO') else False
-    
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
     @classmethod
     def init_app(cls, app):
         # ...

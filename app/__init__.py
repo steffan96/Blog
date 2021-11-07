@@ -24,7 +24,7 @@ mail = Mail()
 def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(Config)
-    app.secret_key = os.getenv('SECRET_KEY')
+    
     from app.main.routes import main
     from app.users.routes import users
     from app.errors.handlers import errors
