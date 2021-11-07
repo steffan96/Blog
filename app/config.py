@@ -1,11 +1,14 @@
 import os
 
+from werkzeug.middleware import proxy_fix
+
 from app.decorators import permission_required
 
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config:
+    SSL_REDIRECT = False
     SECRET_KEY = os.getenv('SECRET_KEY')
     SESSION_TYPE = 'filesystem' 
     SESSION_PERMANENT = False
@@ -36,8 +39,7 @@ class TestingConfig(Config):
     WTF_CSRF_ENABLED = False
     
 class ProductionConfig(Config):
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-    'sqlite:///' + os.path.join(basedir, 'data.sqlite')
+    
     DEBUG = False
 
     @classmethod
@@ -64,3 +66,12 @@ class ProductionConfig(Config):
         mail_handler.setLevel(logging.ERROR)
         app.logger.addHandler(mail_handler)
 
+class HerokuConfig(ProductionConfig):
+    SSL_REDIRECT = True if os.environ.get('DYNO') else False
+    
+    @classmethod
+    def init_app(cls, app):
+        # ...
+        # handle reverse proxy server headers
+        import werkzeug.middleware.proxy_fix
+        app.wsgi_app = proxy_fix(app.wsgi_app)
