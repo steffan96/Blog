@@ -12,6 +12,7 @@ class Config:
     SECRET_KEY = os.getenv('SECRET_KEY')
     SESSION_TYPE = 'filesystem' 
     SESSION_PERMANENT = False
+    #SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:Kokosinjac123!@localhost/postgres'
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     MAIL_SERVER = 'smtp.gmail.com'
