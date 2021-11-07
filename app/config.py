@@ -1,6 +1,6 @@
 import os
 
-from blogproject.decorators import permission_required
+from app.decorators import permission_required
 
 
 basedir = os.path.abspath(os.path.dirname(__file__))

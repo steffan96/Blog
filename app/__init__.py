@@ -1,5 +1,5 @@
 from flask import Flask
-from blogproject.config import Config
+from app.config import Config
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
@@ -25,9 +25,9 @@ def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(Config)
 
-    from blogproject.main.routes import main
-    from blogproject.users.routes import users
-    from blogproject.errors.handlers import errors
+    from app.main.routes import main
+    from app.users.routes import users
+    from app.errors.handlers import errors
     app.register_blueprint(main)
     app.register_blueprint(users)
     app.register_blueprint(errors)
