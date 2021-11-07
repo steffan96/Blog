@@ -12,8 +12,8 @@ class Config:
     SECRET_KEY = os.getenv('SECRET_KEY')
     SESSION_TYPE = 'filesystem' 
     SESSION_PERMANENT = False
-    SQLALCHEMY_DATABASE_URI = os.getenv('POSTGRES_BLOG')
-    #SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
+    #SQLALCHEMY_DATABASE_URI = os.getenv('POSTGRES_BLOG')
+    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     MAIL_SERVER = 'smtp.gmail.com'
     MAIL_PORT = 465
