@@ -7,7 +7,7 @@ from flask_bootstrap import Bootstrap
 from flask_mail import Mail
 from flask_admin import Admin
 from flask_migrate import Migrate
-
+import os
 
 
 db = SQLAlchemy()
@@ -24,7 +24,7 @@ mail = Mail()
 def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(Config)
-
+    app.secret_key = os.getenv('SECRET_KEY')
     from app.main.routes import main
     from app.users.routes import users
     from app.errors.handlers import errors
