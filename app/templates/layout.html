@@ -16,7 +16,7 @@
     <ul class="nav justify-content-end">
       <div class="col align-self-start">
         <a href="{{ url_for('main.home') }}" style="text-decoration: none; display: inline-block; margin-right: 30px; " class="display-5 pull-left"
-          style="color: black;">Flask Blog</a>
+          style="color: black;">Pisite Gluposti</a>
           {% if current_user.is_authenticated %}
           <li class="nav-item fs-3" style="display:inline-block" >
           <a class="nav-link" href="{{ url_for('main.following', id=current_user.id) }}">Following</a>

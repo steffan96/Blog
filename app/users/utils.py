@@ -37,7 +37,7 @@ def send_confirmation_mail(user):
     msg = MIMEMultipart()
     token = user.generate_confirmation_token()
     text = f'''Hello {user.username}, 
-Welcome to Pisete Gluposti!
+Welcome to Pisite Gluposti!
 To confirm your account please click on the following link:
 {url_for('users.confirm', token=token, _external=True)}
 Please do not respond on this email.
