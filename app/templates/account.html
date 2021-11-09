@@ -17,9 +17,9 @@
 
 <div style="display: flex;" class="row mb-2 content-section m-3">
     <h2 style="color: blue; margin-left: 3px;">Update Account</h2>
-    <form method="POST" action="" class="row g-1 w-50" style="margin: 4px;" enctype="multipart/form-data" style="justify-content: flex-start; max-width: 400px;">
+    <form method="POST" action="" class="row g-0 w-25" style="margin-right: 15%;" enctype="multipart/form-data" style="justify-content: flex-start; max-width: 400px;">
         {{ form.hidden_tag() }}
-        <fieldset class="form-group m-3" style="justify-content: flex-start;">
+        <fieldset class="form-group m-4" style="justify-content: flex-start;">
             {{ form.username.label(class_="form-control-label") }}
             <br>
             {% if form.username.errors %}
@@ -82,7 +82,7 @@
                 {% endfor %}
             </div>
             {% else %}
-            {{ form.about_me(class_="form-control-lg", style="max-width: 550px; max-height: 120px") }}
+            {{ form.about_me(class_="form-control-lg", style="min-width: 300px; max-width: 550px; max-height: 120px") }}
             {% endif %}
             <br>
             <br>
@@ -105,10 +105,10 @@
 </fieldset>
 </form>
 
-    <div style="justify-items: flex-end; align-items: flex-start; max-width: 600px;" class="w-25" >
+    <div style="max-width: 750px; min-width: 300px;  justify-items: flex-end; align-items: flex-start;" class="w-50" >
     {% for post in pagin.items %}
-    <div style="max-width: 600px; justify-content: flex-end; align-items: flex-start;" class="row g-0 border rounded overflow-hidden flex-sm-row m-3 shadow-sm h-sm">
-        <div class="col p-2 d-flex flex-column position-static" style="justify-content: flex-end;">
+    <div style="justify-content: flex-end; align-items: flex-start;" class="row g-0 border rounded overflow-hidden flex-sm-row m-3 shadow-sm h-sm-10">
+        <div class="col p-4 d-flex flex-column position-static" style="justify-content: flex-end;">
             <h2 class="blog-post-title"><a href="{{ url_for('main.post', id=post.id) }}"
                     style="text-decoration: none; color: black;">{{ post.title }}</a></h2>
             <p class="list-inline-item demo-2">{{ post.content }}</p>
@@ -116,11 +116,11 @@
             <ul class="nav justify-content-end">
                 <li class="nav-item fs-3">
                     <a href="{{ url_for('main.edit_post', id=post.id ) }}"
-                        style="text-decoration: none; font-size: medium;"
-                        class="d-flex justify-content-end m-3">Edit Post</a>
+                        style="margin-right: 20px; font-size: 20px; text-decoration: none;"
+                        class="d-flex justify-content-end">Edit Post</a>
                 <li class="nav-item fs-3">
                     <a href="{{ url_for('main.delete_post', id=post.id ) }}"
-                        style="font-size: medium; text-decoration: none;" class="d-flex justify-content-end m-3">Delete
+                        style="font-size: 20px; text-decoration: none;" class="d-flex justify-content-end">Delete
                         Post</a>
             </ul>
             </div>
