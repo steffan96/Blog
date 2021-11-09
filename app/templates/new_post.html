@@ -9,11 +9,11 @@
 
 
 <div class="content-section">
-    <form method="POST" action="" class="row g-3" style="margin: 10px;">
+    <form method="POST" action="" class="row g-1" style="margin: 10px;">
         {{ form.hidden_tag() }}
         <fieldset class="form-group m-4">
             <legend class="border-bottom mb-4" style="color: #0000EE;">Create New Post</legend>
-            <div class="col-md-1 w-50 p-3" style="margin-bottom: 3px;">
+            <div class="col-md-1 w-25 p-3" style="margin-bottom: 3px;">
                 {{ form.title.label(class_="form-control-label") }}
                 <br>
                 {{ form.title(class_="form-control-lg", style="width: 400px;") }}

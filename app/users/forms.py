@@ -29,8 +29,8 @@ class RegisterForm(FlaskForm):
             raise ValidationError("This email is already in use")
 
 class LoginForm(FlaskForm):
-    email = EmailField('Enter your email', [validators.DataRequired(), validators.Email()])
-    password = PasswordField('Enter your password', validators=[DataRequired(), Length(min=6, message="Password must contain at least 6 characters")])
+    email = EmailField('Enter email', [validators.DataRequired(), validators.Email()])
+    password = PasswordField('Enter password', validators=[DataRequired(), Length(min=6, message="Password must contain at least 6 characters")])
     remember = BooleanField('Remember me')
     submit = SubmitField('Login')
 
@@ -54,6 +54,6 @@ class RequestResetForm(FlaskForm):
             raise ValidationError("There is no account with this email address. You must register first.")
 
 class ResetPasswordForm(FlaskForm):
-    new_password = PasswordField('Enter your new password', validators=[Length(min=6), EqualTo('confirm_password', message='Passwords need to match')])
+    new_password = PasswordField('Enter new password', validators=[Length(min=6), EqualTo('confirm_password', message='Passwords need to match')])
     confirm_password = PasswordField("Confirm new password", validators=[Length(min=6), EqualTo("new_password", message=" ")])
     submit = SubmitField("Submit")
