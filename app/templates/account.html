@@ -19,7 +19,7 @@
     
     <form method="POST" action="" class="row g-0 w-25" style="margin-right: 15%;" enctype="multipart/form-data" style="justify-content: flex-start; max-width: 400px;">
         {{ form.hidden_tag() }}
-        <h2 style="color: blue; margin-left: 3px;">Update Account</h2>
+        <h2 style="color: blue; margin-left: 3px; margin-bottom: 3px;">Update Account</h2>
         <fieldset class="form-group m-4" style="justify-content: flex-start;">
             {{ form.username.label(class_="form-control-label") }}
             <br>
@@ -102,12 +102,12 @@
             <br>
             {% endif %}
             {{ form.submit (class="btn btn-outline-primary", style="margin-top: 0;")}}
-
+            <hr>
 </fieldset>
 </form>
     
     <div style="max-width: 750px; min-width: 300px;  justify-items: flex-end; align-items: flex-start;" class="w-50" >
-        <h2 style="color: blue; margin-left: 3px;">Update Account</h2>
+        <h2 style="color: blue; margin-left: 3px;">Your Posts</h2>
     {% for post in pagin.items %}
     <div style="justify-content: flex-end; align-items: flex-start;" class="row g-0 border rounded overflow-hidden flex-sm-row m-3 shadow-sm h-sm-10">
         <div class="col p-4 d-flex flex-column position-static" style="justify-content: flex-end;">
