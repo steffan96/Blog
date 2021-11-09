@@ -12,157 +12,147 @@
         <small-text style="margin-right: 1030px;">{{ current_user.email }}</small-text>
 
     </div>
-
-
-
 </div>
 <hr>
-<div style="display: flex;">
-    <div class="row mb-2">
-        <div class="content-section">
-            <form method="POST" action="" class="row g-3" style="margin: 10px;" enctype="multipart/form-data">
-                {{ form.hidden_tag() }}
-                <fieldset class="form-group m-4">
-                    <div class="col-md-1 w-25 p-3"
-                        style="margin-bottom: 3px; justify-items: flex-end; align-items: flex-start;">
-                        <div style="display: flex; flex-direction: row;" class="mb-3">
-                            <h2 style="color: blue; margin-right: 13px;" class="list-inline-item">Update</h2>
-                            <h2 style="color: blue;" class="list-inline-item">Account</h2>
-                            
-                        </div>
-                       
 
-
-
-                        {{ form.username.label(class_="form-control-label") }}
-                        <br>
-                        {% if form.username.errors %}
-                        {{ form.username(class="form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.username.errors %}
-                            <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                        {% else %}
-                        {{ form.username(class_="form-control-lg") }}
-                        <br>
-                        {% endif %}
-                        {{ form.email.label(class_="form-control-label") }}
-                        <br>
-                        {% if form.email.errors %}
-                        {{ form.email(class="form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.email.errors %}
-                            <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                        {% else %}
-                        {{ form.email(class_="form-control-lg") }}
-                        {% endif %}
-                        <br>
-                        {{ form.password.label(class_="form-control-label") }}
-                        <br>
-                        {% if form.password.errors %}
-                        {{ form.password(class="form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.password.errors %}
-                            <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                        {% else %}
-                        {{ form.password(class_="form-control-lg") }}
-                        {% endif %}
-                        <br>
-                        {{ form.confirm_password.label(class_="form-control-label") }}
-                        <br>
-                        {% if form.confirm_password.errors %}
-                        {{ form.confirm_password(class="form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.confirm_password.errors %}
-                            <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                        {% else %}
-                        {{ form.confirm_password(class_="form-control-lg mb-4") }}
-                        {% endif %}
-                        <br>
-                        {{ form.about_me.label(class_="form-control-label") }}
-                        <br>
-                        {% if form.about_me.errors %}
-                        {{ form.about_me(class="form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.about_me.errors %}
-                            <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                        {% else %}
-                        {{ form.about_me(class_="form-control-lg", style="width: 550px; height: 120px") }}
-                        {% endif %}
-                        <br>
-                        <br>
-                        {{ form.picture.label() }}
-                        <br>
-                        {% if form.picture.errors %}
-                        {{ form.picture(class="form-control-file is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.picture.errors %}
-                            <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                        {% else %}
-                        {{ form.picture(class="mb-4 form-control-file") }}
-                        {% endif %}
-                        {{ form.submit (class="btn btn-outline-primary", style="margin-top: 0;")}}
-                    </div>
-                </fieldset>
-            </form>
-        </div>
-    </div>
-    <div style="justify-items: flex-end; align-items: flex-end; width: 1000px;">
-        {% for post in pagin.items %}
-        <div class="row g-0 border rounded overflow-hidden flex-sm-row m-3 shadow-sm h-sm-10 position-relative">
-            <div class="col p-4 d-flex flex-column position-static">
-                <h2 class="blog-post-title"><a href="{{ url_for('main.post', id=post.id) }}"
-                        style="text-decoration: none; color: black;">{{ post.title }}</a></h2>
-                <p class="list-inline-item demo-2">{{ post.content }}</p>
-                {% if post.user_id == current_user.id %}
-                <ul class="nav justify-content-end">
-                    <li class="nav-item fs-3">
-                        <a href="{{ url_for('main.edit_post', id=post.id ) }}"
-                            style="margin-right: 20px; font-size: 20px; text-decoration: none;"
-                            class="d-flex justify-content-end">Edit Post</a>
-                    <li class="nav-item fs-3">
-                        <a href="{{ url_for('main.delete_post', id=post.id ) }}"
-                            style="font-size: 20px; text-decoration: none;" class="d-flex justify-content-end">Delete
-                            Post</a>
-                </ul>
-                {% endif %}
+<div style="display: flex;" class="row mb-2 content-section m-3">
+    <h2 style="color: blue; margin-left: 3px;">Update Account</h2>
+    <form method="POST" action="" class="row g-0 w-50" style="margin: 10px;" enctype="multipart/form-data" style="justify-content: flex-start; max-width: 400px;">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group m-4" style="justify-content: flex-start;">
+            {{ form.username.label(class_="form-control-label") }}
+            <br>
+            {% if form.username.errors %}
+            {{ form.username(class="form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.username.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
             </div>
-        </div>
-        {% endfor %}
-
-        <span>
-            {% if pagin.has_prev %}
-            <a class="btn btn-outline-info m-3" href="{{ url_for('users.account', page=pagin.page - 1) }}">
-                << /a>
-                    {% endif %}
-        </span>
-        {% for page_num in pagin.iter_pages(left_edge=1, right_edge=1, right_current=2, left_current=1) %}
-        {% if page_num %}
-        {% if pagin.page == page_num %}
-        <a class="btn btn-info m-3" href="{{ url_for('users.account', page=page_num) }}">{{ page_num }}</a>
-        {% else %}
-        <a class="btn btn-outline-info m-3" href="{{ url_for('users.account', page=page_num) }}">{{ page_num }}</a>
-        {% endif %}
-        {% else %}
-        ...
-        {% endif %}
-        {% endfor %}
-        <span>
-            {% if pagin.has_next %}
-            <a class="btn btn-outline-info m-3" href="{{ url_for('users.account', page=pagin.page + 1) }}">></a>
+            {% else %}
+            {{ form.username(class_="form-control-lg") }}
+            <br>
             {% endif %}
-        </span>
+            {{ form.email.label(class_="form-control-label") }}
+            <br>
+            {% if form.email.errors %}
+            {{ form.email(class="form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.email.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.email(class_="form-control-lg") }}
+            {% endif %}
+            <br>
+            {{ form.password.label(class_="form-control-label") }}
+            <br>
+            {% if form.password.errors %}
+            {{ form.password(class="form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.password.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.password(class_="form-control-lg") }}
+            {% endif %}
+            <br>
+            {{ form.confirm_password.label(class_="form-control-label") }}
+            <br>
+            {% if form.confirm_password.errors %}
+            {{ form.confirm_password(class="form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.confirm_password.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.confirm_password(class_="form-control-lg mb-4") }}
+            {% endif %}
+            <br>
+            {{ form.about_me.label(class_="form-control-label") }}
+            <br>
+            {% if form.about_me.errors %}
+            {{ form.about_me(class="form-control-sm is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.about_me.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.about_me(class_="form-control-lg", style="min-width: 300px; max-width: 550px; max-height: 120px") }}
+            {% endif %}
+            <br>
+            <br>
+            {{ form.picture.label() }}
+            <br>
+            {% if form.picture.errors %}
+            {{ form.picture(class="form-control-file is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.picture.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            
+            {% else %}
+            {{ form.picture(class="mb-4 form-control-file") }}
+            <br>
+            {% endif %}
+            {{ form.submit (class="btn btn-outline-primary", style="margin-top: 0;")}}
+
+</fieldset>
+</form>
+
+    <div style="justify-items: flex-end; align-items: flex-start;" class="w-25" >
+    {% for post in pagin.items %}
+    <div style="max-width: 550px; min-width: 300px; justify-content: flex-end; align-items: flex-start;" class="row g-0 border rounded overflow-hidden flex-sm-row m-3 shadow-sm h-sm-10">
+        <div class="col p-4 d-flex flex-column position-static" style="justify-content: flex-end;">
+            <h2 class="blog-post-title"><a href="{{ url_for('main.post', id=post.id) }}"
+                    style="text-decoration: none; color: black;">{{ post.title }}</a></h2>
+            <p class="list-inline-item demo-2">{{ post.content }}</p>
+            
+            <ul class="nav justify-content-end">
+                <li class="nav-item fs-3">
+                    <a href="{{ url_for('main.edit_post', id=post.id ) }}"
+                        style="margin-right: 20px; font-size: 20px; text-decoration: none;"
+                        class="d-flex justify-content-end">Edit Post</a>
+                <li class="nav-item fs-3">
+                    <a href="{{ url_for('main.delete_post', id=post.id ) }}"
+                        style="font-size: 20px; text-decoration: none;" class="d-flex justify-content-end">Delete
+                        Post</a>
+            </ul>
+            </div>
     </div>
+            
+    {% endfor %}
+    </div>
+</div>
+
+
+    <span>
+        {% if pagin.has_prev %}
+        <a class="btn btn-outline-info m-3" href="{{ url_for('users.account', page=pagin.page - 1) }}">
+            << /a>
+                {% endif %}
+    </span>
+    {% for page_num in pagin.iter_pages(left_edge=1, right_edge=1, right_current=2, left_current=1) %}
+    {% if page_num %}
+    {% if pagin.page == page_num %}
+    <a class="btn btn-info m-3" href="{{ url_for('users.account', page=page_num) }}">{{ page_num }}</a>
+    {% else %}
+    <a class="btn btn-outline-info m-3" href="{{ url_for('users.account', page=page_num) }}">{{ page_num }}</a>
+    {% endif %}
+    {% else %}
+    ...
+    {% endif %}
+    {% endfor %}
+    <span>
+        {% if pagin.has_next %}
+        <a class="btn btn-outline-info m-3" href="{{ url_for('users.account', page=pagin.page + 1) }}">></a>
+        {% endif %}
+    </span>
+</div>
 </div>
 {% endblock %}

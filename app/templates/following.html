@@ -11,7 +11,7 @@
     integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
   <!-- Custom CSS -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-  <title>{% block title %}Following{% endblock %}</title>
+  <title>{% block title %}Pisite Gluposti{% endblock %}</title>
   <div>
     <ul class="nav justify-content-end">
       <div class="col align-self-start">
@@ -32,8 +32,9 @@
     <br>
     <br>
     <div style="display: flex; flex-direction: row; margin-left: 130px;" class="mb-3">
-                            <h2 style="color: blue; margin-right: 13px;" class="list-inline-item">Posts from users that you follow</h2>          
+                            <h2 style="color: blue; margin-right: 13px;" class="list-inline-item">Posts from the users which you follow</h2>          
     </div>
+    <hr>
     {% for post in posts.items %}
     <div class="row g-0 border rounded overflow-hidden flex-sm-row m-3 shadow-sm h-sm-150 position-relative margin5">
         <div class="col p-4 d-flex flex-column position-static">

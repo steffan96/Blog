@@ -17,7 +17,7 @@ def save_picture(form_picture):
     picture_path = os.path.join(current_app.root_path, 'static/profile_pics', picture_name)
     small_picture_path = os.path.join(current_app.root_path, 'static/small_profile_pics', picture_name)
     
-    small_output_size = (35,31)
+    small_output_size = (70,61)
     i = Image.open(form_picture)
     i.thumbnail(small_output_size)
     i.save(small_picture_path)
