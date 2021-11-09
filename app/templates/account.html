@@ -9,7 +9,7 @@
     </div>
     <h2>{{ current_user.username }}</h2>
     <div style="display:flex; flex-direction: row;">
-        <small-text style="margin-right: 1030px;">{{ current_user.email }}</small-text>
+        <small-text>{{ current_user.email }}</small-text>
 
     </div>
 </div>
@@ -17,7 +17,7 @@
 
 <div style="display: flex;" class="row mb-2 content-section m-3">
     <h2 style="color: blue; margin-left: 3px;">Update Account</h2>
-    <form method="POST" action="" class="row g-0 w-50" style="margin: 10px;" enctype="multipart/form-data" style="justify-content: flex-start; max-width: 400px;">
+    <form method="POST" action="" class="row g-0 w-25" style="margin: 4px;" enctype="multipart/form-data" style="justify-content: flex-start; max-width: 400px;">
         {{ form.hidden_tag() }}
         <fieldset class="form-group m-4" style="justify-content: flex-start;">
             {{ form.username.label(class_="form-control-label") }}
