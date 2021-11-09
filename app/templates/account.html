@@ -17,7 +17,7 @@
 
 <div style="display: flex;" class="row mb-2 content-section m-3">
     <h2 style="color: blue; margin-left: 3px;">Update Account</h2>
-    <form method="POST" action="" class="row g-0 w-25" style="margin: 4px;" enctype="multipart/form-data" style="justify-content: flex-start; max-width: 400px;">
+    <form method="POST" action="" class="row g-1 w-50" style="margin: 4px;" enctype="multipart/form-data" style="justify-content: flex-start; max-width: 400px;">
         {{ form.hidden_tag() }}
         <fieldset class="form-group m-3" style="justify-content: flex-start;">
             {{ form.username.label(class_="form-control-label") }}
@@ -104,10 +104,10 @@
 
 </fieldset>
 </form>
-<div class="w-25"></div>
-    <div style="justify-items: flex-end; align-items: flex-start; max-width: 400px;" class="w-25" >
+
+    <div style="justify-items: flex-end; align-items: flex-start; max-width: 600px;" class="w-25" >
     {% for post in pagin.items %}
-    <div style="max-width: 400px; justify-content: flex-end; align-items: flex-start;" class="row g-0 border rounded overflow-hidden flex-sm-row m-3 shadow-sm h-sm">
+    <div style="max-width: 600px; justify-content: flex-end; align-items: flex-start;" class="row g-0 border rounded overflow-hidden flex-sm-row m-3 shadow-sm h-sm">
         <div class="col p-2 d-flex flex-column position-static" style="justify-content: flex-end;">
             <h2 class="blog-post-title"><a href="{{ url_for('main.post', id=post.id) }}"
                     style="text-decoration: none; color: black;">{{ post.title }}</a></h2>
