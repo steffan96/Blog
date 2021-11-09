@@ -3,7 +3,7 @@
 {% block title %}{% endblock %}
 
 {% block content %}
-<div class="m-3">
+<div class="m-3" style="width: 100%;">
     <div>
         <img src="{{ image_file }}" alt="" class="rounded-circle account-img">
     </div>
@@ -104,7 +104,7 @@
 
 </fieldset>
 </form>
-
+<div class="w-25"></div>
     <div style="justify-items: flex-end; align-items: flex-start; max-width: 400px;" class="w-25" >
     {% for post in pagin.items %}
     <div style="max-width: 400px; justify-content: flex-end; align-items: flex-start;" class="row g-0 border rounded overflow-hidden flex-sm-row m-3 shadow-sm h-sm">
