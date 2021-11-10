@@ -44,7 +44,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(35), nullable=False)
     password = db.Column(db.String(130), nullable=False)
     about_me = db.Column(db.Text(), nullable=True)
-    picture = db.Column(db.String(25))
+    picture = db.Column(db.String(50))
     member_since = db.Column(db.DateTime, default = datetime.utcnow)
     confirmed = db.Column(db.Boolean, default=False)
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))

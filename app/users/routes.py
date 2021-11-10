@@ -20,12 +20,12 @@ def register():
     form = RegisterForm()
     if request.method == "POST":
         if form.validate_on_submit():
-            admin_user = User.query.filter_by(email='stefanmilicic@yahoo.com').first()
-            pic = admin_user.picture
+            #admin_user = User.query.filter_by(email='stefanmilicic@yahoo.com').first()
+            #pic = admin_user.picture
             hashed_pw = bcrypt.generate_password_hash(form.password.data).decode('utf-8', 'ignore')
             user = User(username = form.username.data, 
                     email = form.email.data,
-                    password = hashed_pw, picture=pic)
+                    password = hashed_pw)#, picture=pic)
             db.session.add(user)
             db.session.commit()            
             send_confirmation_mail(user)
@@ -61,43 +61,45 @@ def logout():
 @users.route('/account', methods=["POST", "GET"])
 @login_required
 def account():
-    
-    count = 0# making sure that at least one element was changed so that the user can be directed to the home page with a flash message
-    form = UpdateAccount()
-    page = request.args.get('page', 1, type=int)
-    
-    
-    pagin = Post.query.filter_by(user_id = current_user.id).order_by(Post.date_posted.desc()).paginate(page=page, per_page=4)
-    
-
-    if form.username.data:
-        current_user.username = form.username.data
-        count+=1
-
-    if form.email.data: 
-        current_user.email = form.email.data
-        count+=1
-
-    if form.password.data and form.confirm_password.data:
-        hashed_pw = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        current_user.password = hashed_pw
-        count+=1
-
-    if form.about_me.data:
-        current_user.about_me = form.about_me.data
-        count+=1
+    if not current_user.confirmed:
+        return render_template('unconfirmed.html')
+    else:
+        count = 0# making sure that at least one element was changed so that the user can be directed to the home page with a flash message
+        form = UpdateAccount()
+        page = request.args.get('page', 1, type=int)
         
-    if form.picture.data:
-        picture_file = save_picture(form.picture.data)
-        current_user.picture = picture_file
-        count+=1
+        
+        pagin = Post.query.filter_by(user_id = current_user.id).order_by(Post.date_posted.desc()).paginate(page=page, per_page=4)
+        
 
-    
-    if count > 0:
-        db.session.commit()
-        flash('Account updated successfully!', 'success')
-        return redirect(url_for('users.account'))
-    image_file = url_for('static', filename='profile_pics/' + current_user.picture)
+        if form.username.data:
+            current_user.username = form.username.data
+            count+=1
+
+        if form.email.data: 
+            current_user.email = form.email.data
+            count+=1
+
+        if form.password.data and form.confirm_password.data:
+            hashed_pw = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+            current_user.password = hashed_pw
+            count+=1
+
+        if form.about_me.data:
+            current_user.about_me = form.about_me.data
+            count+=1
+            
+        if form.picture.data:
+            picture_file = save_picture(form.picture.data)
+            current_user.picture = picture_file
+            count+=1
+
+        
+        if count > 0:
+            db.session.commit()
+            flash('Account updated successfully!', 'success')
+            return redirect(url_for('users.account'))
+        image_file = url_for('static', filename='profile_pics/')# + current_user.picture)
     return render_template('account.html', form=form, image_file=image_file, page=page, pagin=pagin)
 
 @users.route('/confirm/<token>')
