@@ -20,12 +20,12 @@ def register():
     form = RegisterForm()
     if request.method == "POST":
         if form.validate_on_submit():
-            admin_user = User.query.filter_by(email='stefanmilicic@yahoo.com').first()
-            pic = admin_user.picture
+            #admin_user = User.query.filter_by(email='stefanmilicic@yahoo.com').first()
+            #pic = admin_user.picture
             hashed_pw = bcrypt.generate_password_hash(form.password.data).decode('utf-8', 'ignore')
             user = User(username = form.username.data, 
                     email = form.email.data,
-                    password = hashed_pw, picture=pic)
+                    password = hashed_pw)#, picture=pic)
             db.session.add(user)
             db.session.commit()            
             send_confirmation_mail(user)
@@ -99,7 +99,7 @@ def account():
             db.session.commit()
             flash('Account updated successfully!', 'success')
             return redirect(url_for('users.account'))
-        image_file = url_for('static', filename='profile_pics/' + current_user.picture)
+        image_file = url_for('static', filename='profile_pics/')# + current_user.picture)
     return render_template('account.html', form=form, image_file=image_file, page=page, pagin=pagin)
 
 @users.route('/confirm/<token>')
