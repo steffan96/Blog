@@ -22,7 +22,7 @@
             </div>
             {% else %}
             <br>
-            {{ form.email(class_="form-control-lg") }}
+            {{ form.email(class_="form-control-lg mb-1") }}
             {% endif %}
             <br>
             {{ form.password.label(class_="form-control-label") }}
@@ -36,6 +36,7 @@
             </div>
 
             {% else %}
+            <br>
             {{ form.password(class_="form-control-lg mb-3") }}
             {% endif %}
             <br>

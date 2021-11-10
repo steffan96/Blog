@@ -18,32 +18,44 @@
         <a href="{{ url_for('main.home') }}" style="text-decoration: none;" class="display-5 pull-left"
           style="color: black;">Pisete Gluposti</a>
       </div>
-      <ul class="nav justify-content-end" style="display: flex;">
-        
+      
+      
+          
 
 
       {% if current_user.is_authenticated %}
-     
-        <li class="nav-item fs-3" style="justify-content: flex-end;">
+     <div class="dropdown m-3">
+  <a class="btn btn-secondary dropdown-toggle" href="#" 
+  role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: transparent; color: #0000EE;">Options</a>
+
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" >
+    <li class="nav-item fs-5" style="justify-content: flex-end;">
+          <a class="nav-link" href="{{ url_for('main.following', id=current_user.id) }}">Following</a>
+        <li class="nav-item fs-5" style="justify-content: flex-end;">
+    <li class="nav-item fs-5" style="justify-content: flex-end;">
           <a class="nav-link" href="{{ url_for('main.newpost') }}">New Post</a>
-        <li class="nav-item fs-3" style="justify-content: flex-end;">
+        <li class="nav-item fs-5" style="justify-content: flex-end;">
           <a class="nav-link" href="{{ url_for('users.account') }}">Account</a>
-        <li class="nav-item fs-3" style="justify-content: flex-end;">
+        <li class="nav-item fs-5" style="justify-content: flex-end;">
           <a class="nav-link" href="{{ url_for('users.logout') }}">Logout</a>
-           </div>
-          {% else %}
+  </ul>
+</div>
+        
+
            
+          {% else %}
+           <ul class="nav justify-content-end" style="display: flex;">
         <li class="nav-item fs-3" style="justify-content: flex-end;">
           <a class="nav-link" href="{{ url_for('users.login') }}">Login</a>
         </li>
         <li class="nav-item fs-3" style="justify-content: flex-end;">
           <a class="nav-link" href="{{ url_for('users.register') }}">Register</a>
         </li>
-    </ul>
-  </div>
+           </ul>
     
   {% endif %}
 
+  </div>
   
 
   <div class="col-md-8" style="color: red;">
