@@ -3,50 +3,34 @@
 {% block title %}{{ user.username }}{% endblock %}
 
 {% block content %}
-<div class="m-3" style="width: 100%; height: 10%;">
-    <div>
-        <img src="{{ image_file }}" alt="" class="rounded-circle account-img">
-    </div>
+<div class="m-3" style="display: flex;">
     <br>
-    <div style="display: flex;">
-        <h2 style="justify-content: flex-start;">{{ user.username }}</h2>
-    </div>
-
+    <h2 style="justify-content: flex-start;">{{ user.username }}</h2>
+</div>
+<div style="display: flex;">
     {% if user.about_me %}
-    <div>
-        <blockquote>
-            <p class="m-3"
-                style="font-style: italic; justify-content: flex-center; align-content: flex-center; width: 30%;">
-                {{user.about_me}}</p>
-        </blockquote>
-    </div>
+    <blockquote>
+        <p class="m-3" style="font-style: italic; justify-content: flex-start; align-content: flex-center;">
+            {{user.about_me}}</p>
+    </blockquote>
     {% else %}
-    <div>
-        <blockquote>
-            <p class="m-3"
-                style="font-style: italic; justify-content: flex-center; align-content: flex-center; width: 30%;">
-                No information</p>
-        </blockquote>
-    </div>
+    <blockquote>
+        <p class="m-3" style="font-style: italic; justify-content: flex-start; align-content: flex-center;">
+            No information</p>
+    </blockquote>
     {% endif %}
 </div>
 
-<div style="display: flex;">
-    <div style="align-content: flex-end;">
-        Followers: <span class="fw-bold">{{ user.followed.count() }}</span>
-        Following: <span class="fw-bold">{{ user.follower.count() }}</span>
-    </div>
+<div style="display: flex; justify-content: flex-end;" class="m-3" >
+    Followers: <span class="fw-bold">&nbsp;{{ user.followed.count() }}&nbsp;</span>
+    Following: <span class="fw-bold">&nbsp;{{ user.follower.count() }}</span>
+</div>
 
-    {% if current_user.id != user.id %}
+<div style="display: flex; justify-content: flex-end;" class="m-3">
     {% if current_user.is_following(user) == True and user != current_user %}
-    <div>
-        <a href="{{ url_for('.unfollow', id=user.id) }}" class="btn btn-primary">Unfollow</a>
-    </div>
+    <a style="justify-content: flex-end;" href="{{ url_for('.unfollow', id=user.id) }}" class="btn btn-primary">Unfollow</a>
     {% else %}
-    <div>
-        <a href="{{ url_for('.follow', id=user.id) }}" class="btn btn-primary">Follow</a>
-    </div>
-    {% endif %}
+    <a style="justify-content: flex-end;" href="{{ url_for('.follow', id=user.id) }}" class="btn btn-primary">Follow</a>
     {% endif %}
     {% if user.is_following(current_user) %}
     <span class="label label-default btn-primary btn" style="background-color: gray;">Follows you</span>
@@ -56,11 +40,16 @@
 
 
 <div>
+    <h2  style="color:#0000EE; margin-left: 15px; margin-bottom: 3px;">User Posts</h2>
     {% for post in pagin.items %}
     <div class="row g-0 border rounded overflow-hidden flex-sm-row m-3 shadow-sm h-sm-10 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
-           <a style="text-decoration: none; color: black;" href="{{ url_for('main.post', id=post.id) }}"><h2 class="blog-post-title">{{ post.title }}</h2></a>
-            <a style="text-decoration: none; color: black;" href="{{ url_for('main.post', id=post.id) }}"><p class="card-text mb-auto">{{ post.content }}</p></a>
+            <a style="text-decoration: none; color: black;" href="{{ url_for('main.post', id=post.id) }}">
+                <h2 class="blog-post-title">{{ post.title }}</h2>
+            </a>
+            <a style="text-decoration: none; color: black;" href="{{ url_for('main.post', id=post.id) }}">
+                <p class="card-text mb-auto">{{ post.content }}</p>
+            </a>
         </div>
     </div>
     {% endfor %}
