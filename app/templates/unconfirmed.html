@@ -8,7 +8,11 @@
 
   <main class="px-3">
     <h2>Your account is not confirmed. We have sent you an email where you can find a confirmation link. <br>Please check your inbox.</h2>
-    
+    <hr>
+    <br>
+    <br>  <br>
+    <h3>If you are facing any issues, you can resend the token on this link:</h3><br>
+    <h3><a style="color: green;" href="{{ url_for('users.resend_token', id=current_user.id) }}">Resend</a></h3>
 
  
     

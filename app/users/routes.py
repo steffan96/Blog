@@ -20,16 +20,14 @@ def register():
     form = RegisterForm()
     if request.method == "POST":
         if form.validate_on_submit():
-            admin_user = User.query.filter_by(email='stefanmilicic@yahoo.com').first()
-            pic = admin_user.picture
             hashed_pw = bcrypt.generate_password_hash(form.password.data).decode('utf-8', 'ignore')
             user = User(username = form.username.data, 
                     email = form.email.data,
-                    password = hashed_pw, picture=pic)
+                    password = hashed_pw)
             db.session.add(user)
             db.session.commit()            
             send_confirmation_mail(user)
-            flash("Successfully registered!", 'success')
+            flash("Successfully registered!\n Please check your inbox to confirm the account", 'success')
             return redirect(url_for('users.login'))
             
     return render_template('register.html', form=form)
@@ -99,7 +97,8 @@ def account():
             db.session.commit()
             flash('Account updated successfully!', 'success')
             return redirect(url_for('users.account'))
-        image_file = url_for('static', filename='profile_pics/' + current_user.picture)
+        if current_user.picture:
+            image_file = url_for('static', filename='profile_pics/' + current_user.picture)
     return render_template('account.html', form=form, image_file=image_file, page=page, pagin=pagin)
 
 @users.route('/confirm/<token>')
@@ -200,3 +199,14 @@ def reset_password(username, token):
         flash("Your password has been updated", 'success')
         return redirect(url_for('users.login'))
     return render_template('reset_password.html', form=form)
+
+@users.route('/resend_token/<int:id>', methods=["POST", "GET"])
+def resend_token(id):
+    user = User.query.filter_by(id=id).first()
+    if user:
+        send_confirmation_mail(user)
+        flash('Verification token has been resent! \n Please check your email', 'success')
+        return redirect(url_for('main.home'))
+    else:
+        flash('Something went wrong. Please try again.', 'warning')
+        return render_template('unconfirmed.html')
