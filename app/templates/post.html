@@ -37,8 +37,7 @@
   <h5 class="m-1"><a href="{{ url_for('users.user', id=comment.author.id) }}"
       style="margin-bottom: 1px; text-decoration: none; margin-right: 15px;">{{ comment.author.username }}</a></h5>
   <p class="card-text mb-auto"
-    style="justify-content:flex-end; margin-bottom: 1px; align-self: center; font-size: smaller;">{{
-    comment.timestamp.strftime("%Y-%m-%d") }}</p>
+    style="justify-content:flex-end; margin-bottom: 1px; align-self: center; font-size: smaller;">{{comment.timestamp.strftime("%Y-%m-%d") }}</p>
 </div>
 <div class="comment-box" style="max-width: 1000px;">
   <p style="font-size: large; margin-left: 15px;">{{ comment.body }}</p>
