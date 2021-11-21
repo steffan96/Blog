@@ -126,12 +126,12 @@ def user(id):
         posts = Post.query.filter_by(user_id = user.id).order_by(Post.date_posted.desc())
         pagin = Post.query.filter_by(user_id = user.id).order_by(Post.date_posted.desc()).paginate(page=page, per_page=4)
         
-        return render_template('user.html', user=user, image_file=image_file, page=page, pagin=pagin, posts=posts)
+        return render_template('user.html', user=user, page=page, pagin=pagin, posts=posts)
 
 @users.route('/follow/<int:id>', methods=["POST", "GET"])
 def follow(id):
     user = User.query.filter_by(id=id).first()
-    image_file = url_for('static', filename='profile_picutres/' + user.picture)  
+     
     page = request.args.get('page', 1, type=int)
     posts = Post.query.filter_by(user_id = user.id).order_by(Post.date_posted.desc())
     pagin = Post.query.filter_by(user_id = user.id).order_by(Post.date_posted.desc()).paginate(page=page, per_page=4)
@@ -139,12 +139,12 @@ def follow(id):
         f = Follow(follower=current_user, followed=user)
         db.session.add(f)
         db.session.commit()
-    return render_template('user.html', user=user, image_file=image_file, page=page, pagin=pagin, posts=posts)
+    return render_template('user.html', user=user, page=page, pagin=pagin, posts=posts)
         
 @users.route('/unfollow/<int:id>', methods=["POST", "GET"])
 def unfollow(id):
     user = User.query.filter_by(id=id).first()
-    image_file = url_for('static', filename='profile_picutres/' + user.picture) 
+    
     page = request.args.get('page', 1, type=int)
     posts = Post.query.filter_by(user_id = user.id).order_by(Post.date_posted.desc())
     pagin = Post.query.filter_by(user_id = user.id).order_by(Post.date_posted.desc()).paginate(page=page, per_page=4)
@@ -152,7 +152,7 @@ def unfollow(id):
     if f:
         db.session.delete(f)
         db.session.commit()
-    return render_template('user.html', user=user, page=page, pagin=pagin, posts=posts, image_file=image_file)
+    return render_template('user.html', user=user, page=page, pagin=pagin, posts=posts)
     
 @users.route('/is_following/<int:id1>/<int:id2>', methods=["POST", "GET"])     
 def is_following(id1, id2):
