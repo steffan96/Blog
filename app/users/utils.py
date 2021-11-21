@@ -107,3 +107,7 @@ Please do not respond on this email.
         server.quit()
 
 
+# post.html code for a picture:
+
+# <!-- <img class="rounded-circle account-img"
+#     src="{{ url_for('static', filename='small_profile_pics/' + comment.author.picture)}}" alt=""> -->
