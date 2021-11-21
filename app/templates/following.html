@@ -6,7 +6,7 @@
     </div>
     <hr>
     {% for post in posts.items %}
-    <div class="row g-0 border rounded overflow-hidden flex-sm-row m-3 shadow-sm h-sm-150 position-relative margin5">
+    <div class="row g-0 border rounded overflow-hidden flex-sm-row m-3 shadow-sm h-sm-150 position-relative margin5" style="height: 290px;">
         <div class="col p-4 d-flex flex-column position-static">
             <h2><a href="{{ url_for('main.post', id=post.id) }}" class="blog-post-title" style="text-decoration: none; color: black;">{{ post.title }}</a></h2>
             {% if post.user_id == current_user.id %}
