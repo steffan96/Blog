@@ -36,23 +36,24 @@
     src="{{ url_for('static', filename='small_profile_pics/' + comment.author.picture)}}" alt="">
   <h5 class="m-1"><a href="{{ url_for('users.user', id=comment.author.id) }}"
       style="margin-bottom: 1px; text-decoration: none; margin-right: 15px;">{{ comment.author.username }}</a></h5>
-  <p class="card-text mb-auto" style="justify-content:flex-end; margin-bottom: 1px; align-self: center; font-size: smaller;">{{
+  <p class="card-text mb-auto"
+    style="justify-content:flex-end; margin-bottom: 1px; align-self: center; font-size: smaller;">{{
     comment.timestamp.strftime("%Y-%m-%d") }}</p>
 </div>
 <div class="comment-box" style="max-width: 1000px;">
-<p style="font-size: large; margin-left: 15px;">{{ comment.body }}</p>
-{% if comment.author_id == current_user.id or current_user.has_role(2) %}
-            <ul class="nav justify-content-end list-unstyled">
-            
-            <li class="nav-item fs-3">
-                <a href="{{ url_for('main.delete_comment', id=comment.id, post_id=post.id ) }}" style="font-size: 20px; text-decoration: none;"
-                    class="d-flex justify-content-end">Delete</a>
-            </ul>
-            </div>
-            {% else %}
+  <p style="font-size: large; margin-left: 15px;">{{ comment.body }}</p>
+  {% if comment.author_id == current_user.id or current_user.has_role(2) %}
+  <ul class="nav justify-content-end list-unstyled">
+
+    <li class="nav-item fs-3">
+      <a href="{{ url_for('main.delete_comment', id=comment.id, post_id=post.id ) }}"
+        style="font-size: 20px; text-decoration: none;" class="d-flex justify-content-end">Delete</a>
+  </ul>
+</div>
+{% else %}
 
 {% endif %}
-    
+
 
 {% endfor %}
 <br><br>
@@ -60,8 +61,7 @@
 <div style="display: flex; justify-content: flex-start;">
   <span style="justify-content: flex-end;">
     {% if pagin.has_prev %}
-    <a class="btn btn-outline-info m-3" href="{{ url_for('main.post', id=post.id, page=pagin.page - 1) }}">
-      <</a>
+    <a class="btn btn-outline-info m-3" href="{{ url_for('main.post', id=post.id, page=pagin.page - 1) }}"><</a>
         {% endif %}
   </span>
   {% for page_num in pagin.iter_pages(left_edge=1, right_edge=1, right_current=2, left_current=1) %}
@@ -104,5 +104,5 @@
 
 {% endblock %}
 
-  {% block script %}
-  {% endblock %}
+{% block script %}
+{% endblock %}
