@@ -125,7 +125,7 @@ def user(id):
         page = request.args.get('page', 1, type=int)
         posts = Post.query.filter_by(user_id = user.id).order_by(Post.date_posted.desc())
         pagin = Post.query.filter_by(user_id = user.id).order_by(Post.date_posted.desc()).paginate(page=page, per_page=4)
-        image_file = url_for('static', filename='profile_pics/' + user.picture)
+        #image_file = url_for('static', filename='profile_pics/' + user.picture)
         return render_template('user.html', user=user, page=page, pagin=pagin, posts=posts)#, image_file=image_file)
 
 @users.route('/follow/<int:id>', methods=["POST", "GET"])
