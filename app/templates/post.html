@@ -9,8 +9,7 @@
 <div class="row featurette m-4">
   <div class="col-md-7">
     <div class="m-3" style="display: flex; flex-direction: row;">
-      <!-- <img class="rounded-circle account-img"
-        src="{{ url_for('static', filename='small_profile_pics/' + post.author.picture)}}" alt=""> -->
+      
       <h5 class="m-1"><a href="{{ url_for('users.user', id=post.author.id) }}"
           style="margin-bottom: 1px; text-decoration: none;">{{ post.author.username }}</a></h5>
     </div>
@@ -32,8 +31,7 @@
 
 {% for comment in pagin.items %}
 <div class="m-3" style="display: flex; flex-direction: row; margin-bottom: 1px;">
-  <!-- <img class="rounded-circle account-img"
-    src="{{ url_for('static', filename='small_profile_pics/' + comment.author.picture)}}" alt=""> -->
+  
   <h5 class="m-1"><a href="{{ url_for('users.user', id=comment.author.id) }}"
       style="margin-bottom: 1px; text-decoration: none; margin-right: 15px;">{{ comment.author.username }}</a></h5>
   <p class="card-text mb-auto"
