@@ -4,11 +4,11 @@ from wtforms.validators import DataRequired, Length
 
 
 class PostForm(FlaskForm):
-    title = StringField('Title', validators=[DataRequired()])
-    content = TextAreaField('Content', validators=[DataRequired()])
-    submit = SubmitField('Submit')
+    title = StringField("Title", validators=[DataRequired()])
+    content = TextAreaField("Content", validators=[DataRequired()])
+    submit = SubmitField("Submit")
+
 
 class CommentForm(FlaskForm):
-    body = TextAreaField('Add Comment', validators=[DataRequired()])
-    submit = SubmitField('Submit')
-    
+    body = TextAreaField("Add Comment", validators=[DataRequired()])
+    submit = SubmitField("Submit")
