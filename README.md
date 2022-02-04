@@ -1,4 +1,4 @@
-# Blogzic
+# Blog
 
 My first project that i ve made using Python and Flask!
 
