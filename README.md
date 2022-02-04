@@ -5,6 +5,7 @@ My first project that i ve made using Python and Flask!
 
 I ve made a logic from the scratch, helping myself with the book of Miguel Grinberg.
 Since role model for this blog was Corey Schafer's blog, i ve also looked a bit in his code while making this project.
+There was no focus on CSS since this is my first project which I consider as an introduction for next more serious projects.
 
 
 Users are able to create posts and comment and like other people's posts. They also have an option to follow other users and to view the posts just from these.
